@@ -1,0 +1,11 @@
+---
+- name: Deploy playbook
+  hosts: Appservers
+  become: yes
+  tasks:
+    - name: Copy the jar
+      copy:
+        src: build/libs/spring-boot-0.0.1-SNAPSHOT.jar
+        dest: /tmp
+    - name: Start the application
+      command: nohup java -jar /tmpspring-boot-0.0.1-SNAPSHOT.jar > /tmp/app.log 2>&1 &
